@@ -20,7 +20,7 @@ pipeline {
         }
         stage('checkout') {
             steps {
-                git branch: 'main', credentialsId: 'daeadc3d-af7c-4e81-9751-173f2e15c0ad', url: 'https://github.com/MR-KK0000/workflow-jenkins-test.git'
+                checkout scm
             }
         }
         
