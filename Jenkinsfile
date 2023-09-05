@@ -23,6 +23,19 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Read Environment Variables') {
+            steps {
+                script {
+                   
+                    def envFileCredential = credentials('my-env-file')
+                
+                    def envFilePath = '.env'
+
+                    writeFile file: envFilePath, text: envFileCredential
+                }
+            }
+        }
         
         stage('Install Dependencies') {
             agent {
