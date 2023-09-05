@@ -23,19 +23,6 @@ pipeline {
                 checkout scm
             }
         }
-
-        stage('Read Environment Variables') {
-            steps {
-                script {
-                   
-                    def envFileCredential = credentials('my-env-file')
-                
-                    def envFilePath = '.env'
-
-                    writeFile file: envFilePath, text: envFileCredential
-                }
-            }
-        }
         
         stage('Install Dependencies') {
             agent {
@@ -73,7 +60,7 @@ pipeline {
             steps {
                 sh 'docker stop ${CONTAINER_NAME} || true'
                 sh 'docker rm ${CONTAINER_NAME} || true'
-                sh 'docker run -d -p 3001:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}'
+                sh 'docker run -d -p 3001:3000 -e APP_MODE=dev --name ${CONTAINER_NAME} ${IMAGE_NAME}'
             }
         }
     }
