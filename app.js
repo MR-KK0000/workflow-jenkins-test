@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3004;
+const port = 3000;
 require('dotenv').config()
 
 // Define a route that handles HTTP GET requests to the root URL ("/").
