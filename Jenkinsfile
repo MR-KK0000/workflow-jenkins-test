@@ -58,8 +58,8 @@ pipeline {
         
        stage('deploy') {
             steps {
-                sh 'docker stop ${CONTAINER_NAME}'
-                sh 'docker rm ${CONTAINER_NAME}'
+                sh 'docker stop ${CONTAINER_NAME} || true'
+                sh 'docker rm ${CONTAINER_NAME} || true'
                 sh 'docker run -d -p 3001:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}'
             }
         }
